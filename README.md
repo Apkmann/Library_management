@@ -7,5 +7,5 @@ Library Management System project (Using Flask Python)
 ![ image ](https://github.com/Apkmann/Library_management/blob/main/Home%20page.jpg)
 
 ### Books page
-![ image ](https://github.com/Apkmann/Library_management/blob/main/Home%20page.jpg)
+![ image ](https://github.com/Apkmann/Library_management/blob/main/Books.jpg)
 
