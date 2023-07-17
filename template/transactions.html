@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Transactions</title>
+    <style>
+        body {
+            background-color: rgb(6, 6, 29);
+            background-image: url('static/l2.jpg');
+        }
+        
+        a {
+            text-decoration: none;
+            color: white;
+        }
+        
+        .head {
+            background-color: black;
+            color: whitesmoke;
+            height: 100px;
+            min-width: 101%;
+            display: flex;
+            align-items: center;
+            background: transparent;
+        }
+        
+        .innerhead {
+            width: 500px;
+        }
+        
+        .headitems > li {
+            display: inline-block;
+            padding-inline: 3%;
+            font-size: 23px;
+        }
+        
+        .titleh {
+            text-align: left;
+            font-size: 50px;
+        }
+        
+        .title {
+            width: 200px;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            right: 50px;
+        }
+        
+        .hoz {
+            background-color: black;
+            height: 5px;
+            min-width: 102%;
+            position: relative;
+            left: -8px;
+            top: 15px;
+        }
+        
+        .transactions {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .inp {
+            display: flex;
+            justify-content: center;
+        }
+        
+        #search {
+            font-size: 15px;
+            width: 300px;
+            outline: none;
+        }
+        
+        .tables,tr,th,td{
+            font-size: 30px;
+            width: 70%;
+            background-color: white;
+            text-align: center;
+        }
+
+        th{
+            background-color: darkcyan;
+            color:white;
+            
+        }
+        .tables,tr:nth-child(even) {
+            background-color: black;
+        }
+        
+       
+        .tab {
+            display: flex;
+            justify-content: center;
+        }
+        
+        a:hover:not(#add) {
+            font-size: 25px;
+            color: yellow;
+        }
+
+        #add:hover {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+        <div class="innerhead">
+            <ul class="headitems">
+                <li><a href="{{url_for('index')}}">Home</a></li>
+                <li><a href="{{url_for('books')}}">Books</a></li>
+                <li><a href="{{url_for('members')}}">Members</a></li>
+                <li><a href="{{url_for('transactions')}}">Transactions</a></li>
+            </ul>
+        </div>
+        <div class="title">
+            <h1 class="titleh">Library Management</h1>
+        </div>
+    </div>
+    <div class="hoz"></div>
+    <div class="transactions">
+        <h2 style="font-size: 40px; color:white;">Transactions</h2>
+    </div>
+    <div class="inp">
+        <form action="/search3" method="POST">
+            <input type="text" id="searc" name="searc" placeholder="Search Transaction">
+            <input type="submit" value="submit">
+            <a id="add" href="{{url_for('addtransaction_pg')}}">Add Transaction</a>
+            <br>
+            <br>
+            <div style="border:2px solid black;background-color:white">
+                <h3 style="color:black;text-align: center;">Total transactions: {{quantity3}}</h3>
+            </div>
+        </form>
+    </div>
+    <br>
+    <div class="tab">
+        <table class="tables">
+            <tr>
+                <th>Member ID</th>
+                <th>Name</th>
+                <th>Book Name</th>
+                <th>Quantity</th>
+                <th>State</th>
+                <th>Date and Time</th>
+                <th>Payment</th>
+                <th>Action</th>
+            </tr>
+            {% for trans in transactions %}
+            <tr>
+                <td>{{ trans.memberid }}</td>
+                <td>{{ trans.name }}</td>
+                <td>{{ trans.bookname }}</td>
+                <td>{{ trans.quantity }}</td>
+                <td>{{ trans.state }}</td>
+                <td>{{ trans.datetime }}</td>
+                <td>{{ trans.payment }}</td>
+                <td><select onchange="handleDelete(this.value)">
+                    <option value="">No Action</option>
+                    <option value="{{ trans._id }}">Delete</option>
+                </select></td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <script>
+        function handleDelete(transactionId) {
+            if (transactionId) {
+                if (confirm("Are you sure you want to delete this transaction?")) {
+                    window.location.href = "/delete_transaction/" + transactionId;
+                }
+            }
+        }
+    </script>
+    
+</body>
+</html>
