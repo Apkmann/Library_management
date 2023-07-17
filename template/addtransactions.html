@@ -97,7 +97,7 @@
             font-size: 25px;
             color:yellow;
         }
-        
+
         .inp::before
         {
             content: "";
@@ -158,4 +158,12 @@
         </form>
     </div>
     </div>
+
+        <script>
+    {% if state == 1 %}
+    alert("The Book is Not Available");
+    {% endif %}
+    </script>
+
+</body>
 </html>
