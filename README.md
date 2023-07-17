@@ -17,3 +17,9 @@ Library Management System project (Using Flask Python)
 
 ### addbooks page
 ![image](https://github.com/Apkmann/Library_management/blob/main/adding%20books.jpg)
+
+### addmembers page
+![image](https://github.com/Apkmann/Library_management/blob/main/adding%20members.jpg)
+
+### addtransactions page
+![image](https://github.com/Apkmann/Library_management/blob/main/adding%20transactions.jpg)
