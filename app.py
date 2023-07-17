@@ -21,7 +21,6 @@ def index():
 def books():
     book = list(collection.find({}, {'_id': 1, 'name': 1, 'author': 1,'quantity':1}))
     quantity = sum(int(bookk['quantity']) for bookk in book)
-    print(quantity)
     return render_template('books.html', books=book,quantity=quantity)#books page
 
 @app.route('/members')
@@ -55,8 +54,9 @@ def addtransaction_pg():
 def search():
     data = request.form.get('searc')
     if data!="":
-        quantity = collection.count_documents({})
-        books = collection.find({'$or':[{'name':data},{'author':data}]})
+        books = list(collection.find({'$or':[{'name':data},{'author':data}]}))
+        quantity = sum(int(bookk['quantity']) for bookk in books )
+        print(books)
         return render_template('books.html', books=books,quantity=quantity)
     else:
         return redirect(url_for('books'))#For books search
