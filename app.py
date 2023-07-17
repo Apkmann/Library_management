@@ -46,7 +46,7 @@ def addmember_pg():
 
 @app.route('/addtransaction_pg')
 def addtransaction_pg():
-    return render_template('addtransactions.html')#for adding transactions
+    return render_template('addtransactions.html',state=0)#for adding transactions
 
 
 #searching sections
@@ -138,14 +138,18 @@ def addtransaction():
         'payment': request.form.get('payment'),
         'datetime': date_time.strftime("%c"),
     }
-    if transaction['state']=="Not Returned":
-        value = int(transaction['quantity'])
-        collection.update_one({'name':transaction['bookname']},{'$inc':{'quantity':-value}})
-        collection3.insert_one(transaction)
-    else:
+    val = collection.find_one({"name":transaction['bookname']})
+    if val and val['quantity']!=0 or transaction['state']=="Returned":
+        if transaction['state']=="Not Returned":
+            value = int(transaction['quantity'])
+            collection.update_one({'name':transaction['bookname']},{'$inc':{'quantity':-value}})
+            collection3.insert_one(transaction)
+        else:
             value = int(transaction['quantity'])
             collection.update_one({'name':transaction['bookname']},{'$inc':{'quantity':value}})
             collection3.insert_one(transaction)
+    else:
+        return render_template('addtransactions.html',state=1)
 
     return redirect(url_for('transactions'))#to add transactions
 
