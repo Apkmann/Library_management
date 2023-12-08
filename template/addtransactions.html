@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Transaction</title>
+    <style>
+        body{
+            background-color: rgb(6, 6, 29);
+            background-image: url('static/l2.jpg');
+        }
+
+        a{
+            text-decoration: none;
+            color:white;
+        }
+
+        .head{
+            background-color: black;
+            color: whitesmoke;
+            height: 100px;
+            min-width: 101%;
+            display: flex;
+            align-items: center;
+            background: transparent;
+        }
+
+        .innerhead
+        {
+            width: 490px;
+        }
+
+        .headitems>li{
+            display: inline-block;
+            padding-inline: 3%;
+            font-size: 23px;
+        }
+
+        .titleh{
+            text-align: left;
+            font-size: 50px;
+
+        }
+
+        .title{
+            width: 200px;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            right:50px;
+        }
+
+        .hoz
+        {
+            background-color: black;
+            height: 5px;
+            min-width: 102%;
+            position: fixed;
+            left :-8px;
+            top:120px;
+        }
+
+        .books
+        {   
+            display:flex;
+            justify-content: center;
+        }
+
+        .inp
+        {
+            display: flex;
+            justify-content: center;
+            position: relative;
+        }
+
+        #search
+        {
+            font-size: 15px;
+            width: 300px;
+            outline: none;
+        }
+
+        .tables,tr,th,td{
+            border: 1px solid black;
+            font-size: 30px;
+            width: 400px;
+            background-color: white;
+            text-align: center;
+        }
+       
+        .tab{
+            display: flex;
+            justify-content: center;
+            
+        }
+
+        a:hover{
+            font-size: 25px;
+            color:yellow;
+        }
+
+        .inp::before
+        {
+            content: "";
+            background-image: url('static/back1.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            height: 360px;
+            width: 420px;
+            position: absolute;
+            top: -90px;
+            z-index: -1;
+            box-shadow: 0 15px 15px black;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="head">
+    <div class="innerhead"><ul class="headitems">
+        <li><a href="{{url_for('index')}}">Home</a></li>
+        <li><a href="{{url_for('books')}}">Books</a></li>
+        <li><a href="{{url_for('members')}}">Members</a></li>
+        <li><a href="transactions">Transactions</a></li>
+    </ul></div>
+    <div class="title">
+        <h1 class="titleh">Library Management</h1></div>
+    </div>
+    <div class="hoz"></div>
+    <div class="forms">
+    <div class="books"><h2 style="font-size: 40px; color:red;">Add Transaction</h2>
+    </div>
+    <div class="inp">
+        <form action="/addtransaction" method="POST">
+        <input type="text" id="memberid" name="memberid" placeholder="Member ID">
+        <br>
+        <br>
+        <input type="text" id="name" name="name" placeholder="Name">
+        <br>
+        <br>
+        <input type="text" id="bookname" name="bookname" placeholder="Book Name">
+        <br>
+        <br>
+        <input type="number" id="quantity" name="quantity" placeholder="Quantity">
+        <br>
+        <br>
+        <select id="state" name="state">
+            <option value="Returned">Returned</option>
+            <option value="Not Returned">Not Returned</option>
+        </select>
+        <br>
+        <br>
+        <input type="text" id="payment" name="payment" placeholder="Payment">
+        <br>
+        <br>
+        <input type="submit" value="Submit">
+        <br>
+        <br>
+        </form>
+    </div>
+    </div>
+
+        <script>
+    {% if state == 1 %}
+    alert("The Book is Not Available");
+    {% endif %}
+    </script>
+
+</body>
+</html>
