@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Main</title>
+    <style>
+        body{
+            background-color: rgb(6, 6, 29);
+            background-image: url('static/l2.jpg');
+
+        }
+
+        a{
+            text-decoration: none;
+            color:white;
+        }
+        .head{
+            background-color: black;
+            color: whitesmoke;
+            height: 100px;
+            min-width: 101%;
+            display: flex;
+            align-items: center;
+            background: transparent;
+        }
+        .innerhead
+        {
+            width: 500px;
+        }
+        .headitems>li{
+            display: inline-block;
+            padding-inline: 3%;
+            font-size: 23px;
+        }
+        .titleh{
+            text-align: left;
+            font-size: 50px;
+
+        }
+        .title{
+            width: 200px;
+            height: auto;
+            display: flex;
+            justify-content: center;
+            position: absolute;
+            right:50px;
+        }
+        .hoz
+        {
+            background-color: black;
+            height: 5px;
+            min-width: 102%;
+            position: relative;
+            left :-8px;
+            top:15px;
+        }
+        .wel{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 60vh;
+            color:white;
+        }
+        .wel::before
+        {
+            content: "";
+            height: 310px;
+            width: 500px;
+            position: absolute;
+            z-index: -1;
+            background:linear-gradient(20deg,black,rgb(81, 79, 1));
+            border-radius: 20%;
+            box-shadow: 0 4px 20px black;
+        }
+        a:hover:not(.inc){
+            font-size: 25px;
+            color:yellow;
+        }
+        .foot
+        {
+            color:white;
+        }
+    </style>
+</head>
+<body>
+    <div class="head">
+    <div class="innerhead"><ul class="headitems">
+        <li><a href="{{url_for('index')}}">Home</a></li>
+        <li><a href="{{url_for('books')}}">Books</a></li>
+        <li><a href="{{url_for('members')}}">Members</a></li>
+        <li><a href="{{url_for('transactions')}}">Transactions</a></li>
+    </ul></div>
+    <div class="title">
+        <h1 class="titleh">Library Management</h1></div>
+    </div>
+    <div class="hoz"></div>
+    <div class="back"></div>
+
+    <div class="wel">
+        <h2> WELCOME TO LIBRARY MANAGEMENT<br><p style="font-size:12px; color:cadetblue">"Good management consists in showing average people how to do the<br>work of superior people"</p></h2>
+    </div>
+
+    <footer class="foot">
+        <small>
+          <h4> Conract us </h4>
+          <ul style="color:black;">
+           <a class="inc" href="#"><li><img style="height:15px;width:15px" src="/static/telephone.png"></li></a>
+            <a class="inc"href="#"><li><img style="height:15px;width:15px" src="/static/whatsapp.png"></li></a>
+            <a class="inc" href="#"><li><img style="height:15px;width:15px" src="/static/mail.png"></li></a>
+          </ul>
+        </small>
+      </footer>
+</body>
+</html>
